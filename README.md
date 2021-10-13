@@ -49,7 +49,7 @@ bonus:
 
 ```bash
 # to delete a certain post
-DELETE /posts/{id}
+DELETE /posts/{title}
 ```
 
 
