@@ -20,19 +20,20 @@ def list_posts():
     return postsList
 
 
-def save_post(title, content):
+# def save_post(title, content):
+def save_post(request, Data_in):
     """
     Saves a blog post, given its title and Markdown
     content. If an existing post with the same title already exists,
     it is replaced.
     """
-    filename = f"posts/{title}.md"
+    filename = f"posts/{Data_in.dict()['title']}.md"
     if default_storage.exists(filename):
         default_storage.delete(filename)
-        default_storage.save(filename, ContentFile(content))
+        default_storage.save(filename, ContentFile(Data_in.dict()['content']))
         return "updated"
     else:
-        default_storage.save(filename, ContentFile(content))
+        default_storage.save(filename, ContentFile(Data_in.dict()['content']))
         return "saved"
 
 
