@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ninja import NinjaAPI
+#from Profile.controllors.profile_controller import profile_controller
+#from account.views import auth_controller
+from headless.controllers import blog_controller
+api = NinjaAPI(
+    version='1.0.0',
+    title='Blog API v1',
+    description='API documentation',
+
+)
+#api.add_router('auth', auth_controller)
+
+api.add_router('blog_controller',blog_controller)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api.urls),
+
 ]
