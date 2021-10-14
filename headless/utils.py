@@ -1,5 +1,5 @@
 import re
-
+import os
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -9,8 +9,15 @@ def list_posts():
     Returns a list of all names of blog posts.
     """
     _, filenames = default_storage.listdir("posts")
-    return list(sorted(re.sub(r"\.md$", "", filename)
-                for filename in filenames if filename.endswith(".md")))
+    postsList = []
+    for filename in filenames:
+        if filename.endswith(".md"):
+            file = open(os.getcwd()+"/posts/"+filename, "r")
+            content = file.read()
+            a = {'title': filename, 'content': content}
+            postsList.append(a)
+
+    return postsList
 
 
 def save_post(title, content):
@@ -22,7 +29,11 @@ def save_post(title, content):
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
         default_storage.delete(filename)
-    default_storage.save(filename, ContentFile(content))
+        default_storage.save(filename, ContentFile(content))
+        return "updated"
+    else:
+        default_storage.save(filename, ContentFile(content))
+        return "saved"
 
 
 def get_post(title):
@@ -38,4 +49,7 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        return "deleted"
