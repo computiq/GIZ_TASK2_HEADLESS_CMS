@@ -1,0 +1,1 @@
+Because PHP Is Better
