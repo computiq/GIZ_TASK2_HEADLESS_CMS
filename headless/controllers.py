@@ -1,5 +1,5 @@
 import os
-from ninja import Router ,Schema
+from ninja import Router
 import re
 
 from django.core.files.base import ContentFile
