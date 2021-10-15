@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ninja import NinjaAPI
+from headless.controllers import headless_controller
+
+api = NinjaAPI(title= "Headless CMS API", description="Headless CMS API FOR blog posts")
+api.add_router('headless', headless_controller)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api.urls),
 ]
