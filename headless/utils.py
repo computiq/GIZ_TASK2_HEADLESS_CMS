@@ -38,4 +38,7 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+        post = f"posts/{title}"
+    if default_storage.exists(post):
+        default_storage.delete(post)
+        return(f'the post "{title}" successfully delete'
