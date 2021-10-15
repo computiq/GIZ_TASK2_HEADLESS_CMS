@@ -23,6 +23,6 @@ api.add_router("headless", headless_controlear)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/", api.urls),
+    path("headless/", api.urls),
 ]
 
