@@ -116,6 +116,18 @@ ENV/
 env.bak/
 venv.bak/
 vedjn.bak/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvedjin.cfg
+.vedjn
+pip-selfcheck.json
+
+
 
 # Spyder project settings
 .spyderproject
