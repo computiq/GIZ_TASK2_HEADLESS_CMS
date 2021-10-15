@@ -62,6 +62,8 @@ def update_post(request, title : str, content : str):
 
 @headless_controlear.delete('posts/{title}')
 def delete_post(request, title : str):
-    del_post(title)
-    return JsonResponse( {f"post Deleted Succesfully" : f"{title}"} )
+    if del_post(title):
+        return JsonResponse( {f"post Deleted Succesfully" : f"{title}"} )
+    else:
+        return JsonResponse( {f"post Doesn't exist" : f"{title}"} )
 
