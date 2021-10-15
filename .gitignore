@@ -109,12 +109,13 @@ celerybeat.pid
 .vedjn
 .env
 .venv
+vedjn/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
-
+vedjn.bak/
 
 # Spyder project settings
 .spyderproject
