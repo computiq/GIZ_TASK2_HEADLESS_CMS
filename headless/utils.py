@@ -2,6 +2,7 @@ import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from pydantic.utils import update_not_none
 
 
 def list_posts():
@@ -36,6 +37,12 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
+def change_post(title):
+    filename = f"posts/{title}.md"
+    if not default_storage.exists(filename) :
+        return False
+
 
 def del_post(title):
-    pass
+    default_storage.delete(f"posts/{title}.md")
+    return f"{title} file deleted "
