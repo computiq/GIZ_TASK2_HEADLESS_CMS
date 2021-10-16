@@ -18,7 +18,7 @@ def get_posts(request):
 def get_post(request,title:str):
    the_post= utils_functions.get_post(title)
    if the_post ==None:
-    raise HttpError(503,  "there is no post in this title , try anothr title")
+    raise HttpError(404,  "there is no post in this title , try anothr title")
    else:
       return the_post
 
