@@ -36,6 +36,15 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
-
 def del_post(title):
-    pass
+    """
+    Removes a post by its title. If no such
+    post exists, the function returns None.
+    """
+    try:
+        path = (f"posts/{title}.md")
+        file_content = default_storage.open(path).read().decode("utf-8")
+        default_storage.delete(path)
+        return file_content
+    except FileNotFoundError:
+        return None
