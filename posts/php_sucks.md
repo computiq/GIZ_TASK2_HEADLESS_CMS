@@ -1,1 +1,1 @@
-PHP sucks because Layth said so!
+I AGREE
