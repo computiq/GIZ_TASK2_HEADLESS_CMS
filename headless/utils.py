@@ -1,4 +1,5 @@
 import re
+import markdown
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -13,17 +14,21 @@ def list_posts():
                 for filename in filenames if filename.endswith(".md")))
 
 
-def save_post(title, content):
+def save_post(title, content, req_method):
     """
     Saves a blog post, given its title and Markdown
     content. If an existing post with the same title already exists,
     it is replaced.
     """
+    msg = "Saved successfully"
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
-        default_storage.delete(filename)
+      default_storage.delete(filename)
+      msg = "Replaced successfully"
+    elif req_method == "PUT":
+      return "No such file found"
     default_storage.save(filename, ContentFile(content))
-
+    return msg
 
 def get_post(title):
     """
@@ -32,10 +37,20 @@ def get_post(title):
     """
     try:
         f = default_storage.open(f"posts/{title}.md")
-        return f.read().decode("utf-8")
+        return markdown.markdown(f.read().decode("utf-8"))
     except FileNotFoundError:
-        return None
+        return "No such file found"
 
 
 def del_post(title):
-    pass
+    """
+    Deletes a blog post, given its title and Markdown
+    content. If an existing post with the same title already exists,
+    it deletes all of them.
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        return "Deleted successfully"
+    else:
+      return "No such file found"
