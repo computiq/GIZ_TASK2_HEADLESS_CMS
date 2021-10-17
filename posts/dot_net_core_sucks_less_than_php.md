@@ -1,7 +1,1 @@
-# Main title
-
-Because I said so
-
-## Secondary title
-
-I insist 
+Because I said so I insist 
