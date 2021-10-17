@@ -31,7 +31,7 @@ def get_post(title):
     post exists, the function returns None.
     """
     try:
-        f = default_storage.open(f"posts/{title}.md")
+        f = default_storage.open(f"posts/{'because I said so'}.md")
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
