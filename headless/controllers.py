@@ -39,7 +39,7 @@ def update_post(request ,datain : data_schema):
      save_post(datain.title,datain.content)
      return list_posts()
 """
-   end point for delete  spiacal  post bt its tiltle  using function del_post() builded in utils.py
+   end point for delete  spiacal  post by its tiltle  using function del_post() builded in utils.py
 """
 
 @headless_controller.delete('retrive/{title}')
