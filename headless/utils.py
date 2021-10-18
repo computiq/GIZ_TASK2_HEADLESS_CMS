@@ -37,6 +37,6 @@ def get_post(title):
         return None
 
     def del_post():
-
-        pass
-
+        filenames = default_storage.listdir("posts")
+        filenames.delete()
+        return list("/posts")

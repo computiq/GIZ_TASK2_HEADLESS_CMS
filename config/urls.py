@@ -9,7 +9,7 @@ Function views
 Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
+     Including another URL conf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
@@ -22,14 +22,16 @@ from headless.controllers import headless_controllers
 
 api = NinjaAPI
 
-@api.get("/add")
-def add(request, a: int, b: int):
-    return {"result": a + b}
 
 api.add_router('headless', headless_controllers)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", api.urls),
+    path("list/", api.urls),
+    path("save/", api.urls),
+    path("get/", api.urls),
+    path("del/", api.urls),
+
 ]
 
 
