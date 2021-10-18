@@ -12,6 +12,8 @@ class DataSchema(Schema):
     content: str
 
 
+class DataSchemaUP(Schema):
+    content: str
 
 
 @post_controller.get('/post')
@@ -30,8 +32,8 @@ def create_post(request, data_in: DataSchema):
 
 
 @post_controller.put('/{title}')
-def update_post(request, data_in: DataSchema):
-    return put_post(data_in.title,data_in.content)
+def update_post(request, title: str ,data_in: DataSchemaUP):
+    return put_post(title,data_in.content)
 
 
 @post_controller.delete('/{title}')
