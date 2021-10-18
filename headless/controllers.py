@@ -7,13 +7,6 @@ import json
 
 post_controller = Router()
 
-"""
-data = [
-    {'name': 'Layth', 'age': 39},
-    {'name': 'Suhaib', 'age': 90},
-]
-
-"""
 
 @post_controller.get('') #pathParameter
 def list_posts(request):
