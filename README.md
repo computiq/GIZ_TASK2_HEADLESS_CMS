@@ -27,8 +27,8 @@ data = [
 def list_account(request):
     list = []
     for n in range(len(utils.list_posts())):
-        list.append({"name": utils.list_posts()[n]})
-    return list
+        list.append({"name": utils.list_posts()})
+    
 
 
 
@@ -37,13 +37,6 @@ def list_account(request):
 def retrieve_account(request, name: str):
     return {"content": utils.get_post(name)} 
 
-
-@account_controller.post('posts') 
-def create_account(request, data_in: PostSchema ):
-    name = data_in.name
-    content = data_in.content
-    utils.save_post(name,content)
-    return data_in.dict()
     
  @account_controller.put('posts/{name}')
 def update_account(request, name: str, data_in: PostSchema):
@@ -53,10 +46,6 @@ def update_account(request, name: str, data_in: PostSchema):
     return data_in.dict()
 
 
-@account_controller.delete('account/{name}')
-def delete_account(request, name: str):
-    return utils.del_account(name)
-    from ninja import Schema
 
 class PostSchema(Schema):
     name: str
