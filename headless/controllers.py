@@ -11,14 +11,24 @@ class DataSchema (Schema) :
  
 controller = Router()
  
-@controller.get('post')
+@controller.get('')
 def posts(request):
     return list_posts()
 
-@controller.get('post/{title}')
-def retrive(request,title: str):
+@controller.get('{title}')
+def retrive_post(request,title: str):
     return get_post(title)
 
-@controller.post('createpost')
-def createPost(request, data_in: DataSchema):
-    return save_post(DataSchema.title,DataSchema.content)
+@controller.post('')
+def create_post(request, data_in: DataSchema):
+    return save_post(data_in.title,data_in.content)
+
+
+@controller.put('{title}')
+def update_post(request, data_in: DataSchema):
+    name=get_post(data_in.title)
+    return save_post(name,data_in.content)
+
+@controller.delete('{title}')
+def delete_post(request, tit:str):
+    return del_post(tit)
