@@ -1,7 +1,9 @@
 import re
-
+import os
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+
+from headless.controllers import delete_post
 
 
 def list_posts():
@@ -11,6 +13,7 @@ def list_posts():
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
+
 
 
 def save_post(title, content):
@@ -38,4 +41,9 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    try:
+        if os.path.exists(f"posts/{title}.md"):
+            os.remove(f"posts/{title}.md")
+        return "Deleted Successfully"
+    except FileNotFoundError:
+        return None

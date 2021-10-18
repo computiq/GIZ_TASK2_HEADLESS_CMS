@@ -19,9 +19,9 @@ from ninja import NinjaAPI
 from headless.controllers import post_controller
 
 api = NinjaAPI()
-api.add_router('post', post_controller)
+api.add_router('posts/', post_controller)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', api.urls),
+    path('v0.2/', api.urls),
 ]
