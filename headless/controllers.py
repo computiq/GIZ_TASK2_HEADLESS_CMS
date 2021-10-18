@@ -19,12 +19,16 @@ def get_post_by_title(request, title:str):
 
 
 @headless_controller.post('/posts')
-def update_AND_create_post(request, D:data):
+def create_post(request, D:data):
     title=D.title
     content=D.content
     return utils.save_post(title, content)
 
-
+@headless_controller.put('/posts')
+def update_post(request, D:data):
+    title=D.title
+    content=D.content
+    return utils.save_post(title, content)
 
 @headless_controller.delete('')
 def delete_post(request,title):
