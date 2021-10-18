@@ -26,8 +26,8 @@ data = [
 @account_controller.get('listt')
 def list_account(request):
     list = []
-    for i in range(len(utils.list_posts())):
-        list.append({"name": utils.list_posts()[i]})
+    for n in range(len(utils.list_posts())):
+        list.append({"name": utils.list_posts()[n]})
     return list
 
 
