@@ -36,6 +36,7 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
+    def del_post():
 
-def del_post(title):
-    pass
+        pass
+
