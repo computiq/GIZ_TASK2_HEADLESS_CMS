@@ -38,4 +38,6 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    default_storage = list_posts(filename, content)
+    default_storage.delete()
+    return {"success": True}
