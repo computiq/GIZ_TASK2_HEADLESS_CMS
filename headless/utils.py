@@ -1,4 +1,5 @@
 import re
+import os
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -38,4 +39,7 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    # To be faier I did it by looking at whats above and understanding the defualt storage
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
