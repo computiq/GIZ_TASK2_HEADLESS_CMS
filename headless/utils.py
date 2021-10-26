@@ -38,4 +38,10 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    """
+    Deletes a blog post, given its title.
+    If an existing post
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
