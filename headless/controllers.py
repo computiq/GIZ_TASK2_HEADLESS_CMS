@@ -5,7 +5,6 @@ from headless.utils import del_post, get_post, list_posts, save_post
 
 headless_controlear = Router()
 
-# you have to CRUD (Create, Read, Update, and Delete) blog posts
 """
 'posts' directory: save/update and create posts, 
 Each file is a markdown file where the filename is the title of the post and the file content is the content of the post.
