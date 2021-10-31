@@ -38,6 +38,13 @@ def get_post(title):
 
 
 def del_post(title):
-    default_storage = list_posts(filename, content)
-    default_storage.delete()
-    return {"success": True}
+    """
+    Deletes a blog post, given its title.
+    Returns { success: value } where value is True or False if operation succeeded
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        return {"success": True}
+    else:
+        return {"success": False}
