@@ -38,4 +38,8 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    check = f"posts/{title}.md"
+    if default_storage.exists(check): 
+        default_storage.delete(check)
+    else:
+        print("Post Does not exist to delete!")
