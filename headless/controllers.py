@@ -1,31 +1,40 @@
 from ninja import Router, Schema
-from .utils import *
+from headless.utils import *
 
-less = Router()
+posts = Router()
+
 
 class PostSchema(Schema):
-    title_name: str
+    title: str
     content: str
 
-@less.get('posts')
-def list_posts(request):
-    return {list_posts()}
-
-# to retrieve a certain post
-@less.get('posts/{title_name}')
-def get_post(request, title_name: str ):
-    return ({"{title_name}" : get_post(title_name)})
-
-# to create a new post
-@less.post('posts')
-def create_post(request, data_in : PostSchema):
-    title_name = data_in.title_name
-    content = data_in.content
-    save_post(title_name, content)
+@posts.get('posts')
+def posts(request):
+    return list_posts()
 
 
-# to update a certain post
-@less.put('posts/{title_name}')
-def update_post(request, title_name : str, content : str):
-    save_post(title_name, content)
-    return ( {"title saved" : "{title_name}", "content saved" : "{content}"} )
+@posts.get('posts/{title}')
+def retrieve_post(request, title: str):
+    if get_post(title) == None:
+        return 'Not found'
+    else:
+        return get_post(title)
+
+@posts.post('posts')
+def create_post(request, post: PostSchema):
+    save_post(post.title, post.content)
+    return post.dict()
+
+
+@posts.put('posts/{title}')
+def update_post(request, post: PostSchema):
+    save_post(post.title, post.content)
+    return post.dict()
+
+@posts.delete('posts/{title}')
+def delete_post(request, title: str):
+    result = del_post(title)
+    if result is None:
+        return 'Not found'
+    else:
+        return result

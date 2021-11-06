@@ -38,4 +38,10 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    try:
+        path = (f"posts/{title}.md")
+        f = default_storage.open(path).read().decode("utf-8")
+        default_storage.delete(path)
+        return f
+    except FileNotFoundError:
+        return None
