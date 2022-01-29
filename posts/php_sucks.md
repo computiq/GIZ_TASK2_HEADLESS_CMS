@@ -1,1 +1,1 @@
-PHP sucks because Layth said so!
+PHP is one of the best languages for the web ever!
