@@ -48,9 +48,7 @@ def del_post(request, title):
 @test.put('/path/{title}')
 def update_post(request, title, content):
     """
-    Saves a blog post, given its title and Markdown
-    content. If an existing post with the same title already exists,
-    it is replaced.
+    update the content of post by given it's title
     """
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
