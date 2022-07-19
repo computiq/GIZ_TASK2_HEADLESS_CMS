@@ -10,10 +10,10 @@ def list_posts():
     """
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
-                for filename in filenames if filename.endswith(".md")))
+                       for filename in filenames if filename.endswith(".md")))
 
 
-def save_post(title, content):
+def save_post(title, content, msg):
     """
     Saves a blog post, given its title and Markdown
     content. If an existing post with the same title already exists,
@@ -23,6 +23,7 @@ def save_post(title, content):
     if default_storage.exists(filename):
         default_storage.delete(filename)
     default_storage.save(filename, ContentFile(content))
+    return f'{title}.md' + msg
 
 
 def get_post(title):
@@ -37,5 +38,8 @@ def get_post(title):
         return None
 
 
-def del_post(title):
-    pass
+def del_post(title, msg):
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+    return f'{title}.md' + msg
