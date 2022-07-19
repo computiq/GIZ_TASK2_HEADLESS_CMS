@@ -28,7 +28,7 @@ def save_post(title, content):
 def get_post(title):
     """
     Retrieves a post by its title. If no such
-    post exists, the function returns None.
+    post exists, the function returns None
     """
     try:
         f = default_storage.open(f"posts/{title}.md")
@@ -38,4 +38,12 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    """
+    Saves a blog post, given its title and Markdown
+    content. If an existing post with the same title already exists,
+    it is replaced.
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        
