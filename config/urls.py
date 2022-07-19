@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from headless.controllers import CMS_app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/", CMS_app.urls),
+
 ]
