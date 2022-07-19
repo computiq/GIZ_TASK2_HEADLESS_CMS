@@ -17,14 +17,14 @@ def retrieve_post(request, title: str):
 
 @posts.post('/create a new post')
 def create_post(request, title: str, content: str):
-    return save_post(title, content)
+    return save_post(title, content, ' file is created')
 
 
 @posts.put('/update a certain post')
 def update_post(request, title: str, content: str):
-    return save_post(title, content)
+    return save_post(title, content, ' file is updated')
 
 
 @posts.delete('/delete post')
 def delete_post(request, title: str):
-    return del_post(title)
+    return del_post(title, ' file is deleted')
