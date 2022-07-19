@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-# from ninja import NinjaAPI
 from headless.controllers import api
 from headless.controllers import test
 
