@@ -64,8 +64,4 @@ def del_post(request, title):
         default_storage.delete(ContentFile())
 
 
-@CMS_controller.get('add')
-def add(request, a: int, b: int):
-    x = a + b * 2
-    return x
 
