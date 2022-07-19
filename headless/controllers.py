@@ -1,7 +1,7 @@
 from headless.utils import *
-from ninja import NinjaAPI
+from ninja import Router
 
-CMS_app = NinjaAPI()
+CMS_app = Router()
 
 # to list all posts
 @CMS_app.get('ListAllPosts')
