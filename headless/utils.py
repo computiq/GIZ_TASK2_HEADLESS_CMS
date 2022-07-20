@@ -36,6 +36,20 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
+def update_post(title, content):
+    """
+    Update a post that is already exist
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        default_storage.save(filename, ContentFile(content))
+    else:
+        return("User not found")
+    
+
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+       default_storage.delete(filename)
