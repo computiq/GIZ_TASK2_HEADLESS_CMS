@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from headless.models import Post
+
+
+@admin.register(Post)
+class PostAdminConfig(admin.ModelAdmin):
+    list_display = ['title', 'content']

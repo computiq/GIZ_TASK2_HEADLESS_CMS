@@ -10,7 +10,7 @@ def list_posts():
     """
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
-                for filename in filenames if filename.endswith(".md")))
+                       for filename in filenames if filename.endswith(".md")))
 
 
 def save_post(title, content):
@@ -37,5 +37,14 @@ def get_post(title):
         return None
 
 
-def del_post(title):
-    pass
+def del_post(title) -> bool:
+    """
+    Delete a post by its title then return True.
+    If there is no post found will return False.
+    """
+    file = get_post(title)
+    if not file:
+        return False
+    else:
+        default_storage.delete(f"posts/{title}.md")
+        return True
