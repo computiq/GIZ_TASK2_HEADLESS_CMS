@@ -36,6 +36,22 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
+def update_post(title, content):
+    """
+    Saves a blog post, given its title and Markdown
+    content. If an existing post with the same title already exists,
+    it is replaced.
+    """
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        default_storage.save(filename, ContentFile(content))
+    else:
+        return("User not found")
+    
+
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+       default_storage.delete(filename)
