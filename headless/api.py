@@ -20,8 +20,6 @@ def list(request):
 @cont.put("/posts/{title}")
 def update(request, title, contents):      
     return update_post(title , contents)
-    
-
 
 @cont.delete("/posts/{title}")
 def delete(request, title):    
