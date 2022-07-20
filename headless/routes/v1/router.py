@@ -30,16 +30,16 @@ def read_all_posts(request):
     return list_posts()
 
 
-@router.post('/', response={200: PostOut})
+@router.post('/', response={201: PostOut})
 def create_post(request, payload: PostIn):
     """
     Create a new post then return it as schema.
     """
     save_post(payload.title, payload.content)
-    return {'title': payload.title, 'content': payload.content}
+    return 201, {'title': payload.title, 'content': payload.content}
 
 
-@router.put('/{title}', response={200: MsgSchema})
+@router.put('/{title}', response={201: MsgSchema})
 def update_post(request, title: str, content: str):
     """
     Update an existing post by its title then return a massage.
@@ -47,7 +47,7 @@ def update_post(request, title: str, content: str):
     When given a title that is not existing will create a new post.
     """
     save_post(title, content)
-    return {'msg': 'Post updated successfully'}
+    return 201, {'msg': 'Post updated successfully'}
 
 
 @router.delete('/{title}', response={200: MsgSchema, 404: MsgSchema})
