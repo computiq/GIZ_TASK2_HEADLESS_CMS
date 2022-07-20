@@ -37,5 +37,14 @@ def get_post(title):
         return None
 
 
-def del_post(title):
-    pass
+def del_post(title) -> bool:
+    """
+    Delete a post by its title then return True.
+    If there is no post found will return False.
+    """
+    file = get_post(title)
+    if not file:
+        return False
+    else:
+        default_storage.delete(f"posts/{title}.md")
+        return True
