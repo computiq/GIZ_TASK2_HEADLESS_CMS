@@ -38,4 +38,7 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    
+    mdfile = f"posts/{title}.md"
+    if default_storage.exists(mdfile):
+        default_storage.delete(mdfile)
