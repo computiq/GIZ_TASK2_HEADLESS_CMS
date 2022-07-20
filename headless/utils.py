@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
 #DONE
-@api.get('/posts')
+@test.get('/posts')
 def list_posts(request):
     """
     Returns a list of all names of blog posts.
@@ -13,7 +13,7 @@ def list_posts(request):
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
 #DONE
-@api.post('/path')
+@test.post('/path')
 def save_post(request, title, content):
     """
     Saves a blog post, given its title and Markdown
@@ -26,7 +26,7 @@ def save_post(request, title, content):
     default_storage.save(filename, ContentFile(content))
 
 #DONE
-@api.get('/posts/{title}')
+@test.get('/posts/{title}')
 def get_post(request, title):
     """
     Retrieves a post by its title. If no such
@@ -38,14 +38,14 @@ def get_post(request, title):
     except FileNotFoundError:
         return None
 
-@api.delete('/posts/{title}')
+@test.delete('/posts/{title}')
 def del_post(request, title):
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
         default_storage.delete(filename)
         
 
-@api.put('/path/{title}')
+@test.put('/path/{title}')
 def update_post(request, title, content):
     """
     update the content of post by given it's title

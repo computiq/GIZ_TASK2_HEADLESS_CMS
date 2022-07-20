@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from headless.controllers import api
+from headless.api import api
 from headless.controllers import test
 
 
