@@ -38,9 +38,7 @@ def get_post(title):
 
 def update_post(title, content):
     """
-    Saves a blog post, given its title and Markdown
-    content. If an existing post with the same title already exists,
-    it is replaced.
+    Update a post that is already exist
     """
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
