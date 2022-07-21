@@ -1,3 +1,4 @@
+from fileinput import filename
 import re
 
 from django.core.files.base import ContentFile
@@ -11,6 +12,14 @@ def list_posts(request):
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
+
+@router.post('/post')
+def new_post(request,title,content):
+    """
+    Creates a new post, given its title and content
+    """
+    filename = f"posts/{title}.md"
+    default_storage.save(filename,ContentFile(content))
 
 @router.put('/update')
 def save_post(request, title, content):
