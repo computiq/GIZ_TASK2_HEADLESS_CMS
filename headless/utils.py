@@ -2,6 +2,8 @@ import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.http import HttpResponse
+from django.http import JsonResponse
 
 
 def list_posts():
@@ -24,7 +26,16 @@ def save_post(title, content):
         default_storage.delete(filename)
     default_storage.save(filename, ContentFile(content))
 
+def update_post(title, content):
 
+    filename=f"posts/{title}.md"
+    try:
+        if default_storage.exists(filename):
+            default_storage.delete(filename)
+            default_storage.save(filename, ContentFile(content))
+            return HttpResponse("updated", status=200)
+    except FileNotFoundError:
+        return None
 def get_post(title):
     """
     Retrieves a post by its title. If no such
@@ -38,4 +49,8 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(f"posts/{title}.md")
+        return HttpResponse(status=204)
+    else: return None
