@@ -59,9 +59,7 @@ def edit_post(request,title, content):
 @account_controller.delete('/posts/{title}')
 def Delete_post(request,title):
     """
-    Delete a certain post, given its title 
-    If an existing post with the same title already exists,
-    It will be deleted.
+    Delete a post by its title
     """
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
