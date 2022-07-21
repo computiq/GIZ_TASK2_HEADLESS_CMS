@@ -4,9 +4,7 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 
 def list_posts():
-    """
-    Returns a list of all names of blog posts.
-    """
+    
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
