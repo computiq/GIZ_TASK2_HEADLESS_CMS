@@ -38,4 +38,13 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    try:
+        f = default_storage.delete(f"posts/{title}.md")
+    except FileNotFoundError:
+        return None
+    
+def update_post(title,content):
+   filename = f"posts/{title}.md"
+   if default_storage.exists(filename):
+        default_storage.delete(filename)
+   default_storage.save(filename, ContentFile(content))
