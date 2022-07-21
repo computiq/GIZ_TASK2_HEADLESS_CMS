@@ -1,4 +1,3 @@
-from turtle import update
 from ninja import Router
 from headless import utils
 
