@@ -1,10 +1,11 @@
+from fileinput import filename
 import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-
-
-def list_posts():
+from headless.controllers import router
+@router.get('/all')
+def list_posts(request):
     """
     Returns a list of all names of blog posts.
     """
@@ -12,8 +13,16 @@ def list_posts():
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
 
+@router.post('/post')
+def new_post(request,title,content):
+    """
+    Creates a new post, given its title and content
+    """
+    filename = f"posts/{title}.md"
+    default_storage.save(filename,ContentFile(content))
 
-def save_post(title, content):
+@router.put('/update')
+def save_post(request, title, content):
     """
     Saves a blog post, given its title and Markdown
     content. If an existing post with the same title already exists,
@@ -24,8 +33,8 @@ def save_post(title, content):
         default_storage.delete(filename)
     default_storage.save(filename, ContentFile(content))
 
-
-def get_post(title):
+@router.get('/get1')
+def get_post(request, title):
     """
     Retrieves a post by its title. If no such
     post exists, the function returns None.
@@ -36,6 +45,7 @@ def get_post(title):
     except FileNotFoundError:
         return None
 
-
-def del_post(title):
-    pass
+@router.delete('/delete')
+def del_post(request, title):
+    default_storage.delete(f"posts/{title}.md")
+    return None
