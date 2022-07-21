@@ -1,3 +1,4 @@
+from email import message
 import re
 
 from django.core.files.base import ContentFile
@@ -38,4 +39,8 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    default_storage.delete(filename)
+
+
+    
