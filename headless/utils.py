@@ -38,4 +38,10 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    def del_post(title):
+        filename = f"posts/{title}.md"
+        if default_storage.exists(filename):
+            default_storage.delete(filename)
+            default_storage.delete(ContentFile())
+
+        default_storage.save(filename, ContentFile())
