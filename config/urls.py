@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ninja import NinjaAPI
+from headless import controllers
 
 api = NinjaAPI()
+api.add_router('/',controllers.Controller)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/' , api.urls),
+    path('api/', api.urls),
 ]
