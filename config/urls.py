@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from ninja import NinjaAPI
+from headless.controllers import controler
+api=NinjaAPI()
+api.add_router('/',controler)
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/", api.urls)
 ]
