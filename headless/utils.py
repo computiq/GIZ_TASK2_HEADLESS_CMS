@@ -1,4 +1,3 @@
-from email import message
 import re
 
 from django.core.files.base import ContentFile
