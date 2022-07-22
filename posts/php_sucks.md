@@ -1,1 +1,1 @@
-PHP sucks because Layth said so!
+RINGS ARE COOL ASF
