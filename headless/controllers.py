@@ -1,10 +1,12 @@
+from email import utils
+from urllib import request
 from ninja import NinjaAPI
 from headless.utils import *
 from ninja import Router
 
 CMSAPP = Router()
 
-@CMSAPP.get("/Returns all post")
+@CMSAPP.get("/returns_allpost")
 def list_posts(request):
     """
     Returns a list of all names of blog posts.
@@ -13,7 +15,7 @@ def list_posts(request):
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
 
-@CMSAPP.get("/Retrieves a post")
+@CMSAPP.get("/retriev_post/{title}")
 def get_post(request,title):
     """
     Retrieves a post by its title. If no such
@@ -26,7 +28,7 @@ def get_post(request,title):
         return None
         
 
-@CMSAPP.post("/create a new post")
+@CMSAPP.post("/create_post/{title}/{content}")
 def save_post(request,title, content):
     """
     create a new post, given its title and Markdown
@@ -38,7 +40,7 @@ def save_post(request,title, content):
         default_storage.delete(filename)
     default_storage.save(filename,ContentFile(content))
 
-@CMSAPP.put("/update a post")
+@CMSAPP.put("/update_post/{title}/{content}")
 def save_post(request,title, content):
     """
     Update a post, given its Title and Markdown
@@ -50,7 +52,7 @@ def save_post(request,title, content):
         default_storage.delete(filename)
     default_storage.save(filename,ContentFile(content))
     
-@CMSAPP.delete("/delete a certain post")
+@CMSAPP.delete("/delete_post/{title}")
 def del_post(request,title):
     """
     Delete a certain post, given its title 

@@ -1,0 +1,18 @@
+#Retrive Post,Wtih title'Fatima'
+GET http://127.0.0.1:10000/CMS/retriev_post/Fatima
+
+####
+#Retrves All Posts
+GET http://127.0.0.1:10000/CMS/returns_allpost
+
+###
+#Create a new post
+POST http://127.0.0.1:10000/CMS/create_post/Fatima1/Fatima%20passed%20here%20%28%3A
+
+###
+#Update post
+PUT http://127.0.0.1:10000/CMS/update_post/Fatima/Fatima%20passed%20here%20%28%3A
+
+###
+#Delete a post
+DELETE http://127.0.0.1:10000/CMS/delete_post/Fatima1

@@ -23,6 +23,6 @@ api.add_router('',CMSAPP)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',api.urls),
+    path('CMS/',api.urls),
 
 ]
