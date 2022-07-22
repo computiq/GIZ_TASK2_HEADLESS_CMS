@@ -45,7 +45,7 @@ def del_post(request, title):
         default_storage.delete(filename)
         
 
-@test.put('/path/{title}')
+@test.put('/posts/{title}')
 def update_post(request, title, content):
     """
     update the content of post by given it's title
