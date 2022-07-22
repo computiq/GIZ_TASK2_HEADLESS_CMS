@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from headless.controllers import CMSAPP
+from ninja import NinjaAPI
+
+api=NinjaAPI()
+api.add_router('',CMSAPP)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('CMS/',api.urls),
+
 ]
