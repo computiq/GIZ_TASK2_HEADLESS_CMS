@@ -7,7 +7,7 @@ posts_controller = Router()
 @posts_controller.get('posts')
 def list_posts(request):
     """
-    Returns a list of all names of blog posts.
+    Returns a list of all titles of the psots.
     """
     _, filenames = default_storage.listdir("posts")
     return list(sorted(re.sub(r"\.md$", "", filename)
@@ -17,8 +17,7 @@ def list_posts(request):
 @posts_controller.get('posts/title')
 def get_post(request, title):
     """
-    Retrieves a post by its title. If no such
-    post exists, the function returns None.
+    To retrieve a certain post using the title.
     """
     try:
         f = default_storage.open(f"posts/{title}.md")
@@ -30,8 +29,7 @@ def get_post(request, title):
 @posts_controller.put('update')
 def save_post(request, title, content):
     """
-    Saves a blog post, given its title and Markdown
-    content. If an existing post with the same title already exists,
+    Creates a new post.If an existing post with the same title already exists,
     it is replaced.
     """
     filename = f"posts/{title}.md"
@@ -43,9 +41,7 @@ def save_post(request, title, content):
 @posts_controller.post('create')
 def save_post(request, title, content):
     """
-    Saves a blog post, given its title and Markdown
-    content. If an existing post with the same title already exists,
-    it is replaced.
+    to update a certain post... given the title
     """
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
@@ -56,7 +52,7 @@ def save_post(request, title, content):
 @posts_controller.delete('delete')
 def del_post(request, title):
     """
-    Delete a blog post, given its title.
+    Delete a blog post after you give it the title.
     """
     filename = f"posts/{title}.md"
     if default_storage.exists(filename):
