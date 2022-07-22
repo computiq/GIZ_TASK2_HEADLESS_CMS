@@ -1,0 +1,1 @@
+Django lives , Php sucks
