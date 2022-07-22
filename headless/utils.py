@@ -38,4 +38,6 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    default_storage.delete(filename)
+    
