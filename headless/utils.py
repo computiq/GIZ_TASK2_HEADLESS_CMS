@@ -23,6 +23,7 @@ def save_post(title, content):
     if default_storage.exists(filename):
         default_storage.delete(filename)
     default_storage.save(filename, ContentFile(content))
+    return 'done'
 
 
 def get_post(title):
@@ -38,4 +39,8 @@ def get_post(title):
 
 
 def del_post(title):
-    pass
+    filename = f"posts/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
+        return 'done'
+
