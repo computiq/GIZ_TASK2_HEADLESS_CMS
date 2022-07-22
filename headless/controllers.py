@@ -9,7 +9,7 @@ RtApp = Router()
 def get_all(request):
      return list_posts()
 
-# to retrieve a certain post
+# to retrieve a certain(one) post
 @RtApp.get("/get_one")
 def get(request,title: str):
     return get_post(title)
