@@ -1,0 +1,8 @@
+1) add
+2) commit
+3) push
+
+
+1) git add file_name , or . for all changes in all files
+2) git commit -m "commit message"
+3) git push # this will push changes to github
